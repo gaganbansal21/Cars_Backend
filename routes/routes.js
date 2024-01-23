@@ -4,7 +4,6 @@ import Fuse from 'fuse.js';
 
 
 const router = express.Router();
-
 // Import your model or any necessary dependencies
 import CarModel from '../models/carmodels.js';
 
@@ -12,12 +11,12 @@ import CarModel from '../models/carmodels.js';
 // Define routes
 router.get('/', async (req, res) => {
   try {
-    const { price, color, mileage } = req.query;
-    
+    const { price=500000, color = "Red", mileage ="10000"} = req.query;
     const filter = {};
     console.log(price,"price in backend")
     console.log(color,"price in backend")
     console.log(mileage,"price in backend")
+
     filter.CarPrice = { $lte:+price };
     if (color !== 'Any') filter.CarColor = color;
     if (mileage !== 'Any') filter.CarMileage = mileage;
@@ -32,7 +31,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 
-  
 });
 
 
