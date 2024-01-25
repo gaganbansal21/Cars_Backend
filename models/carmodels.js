@@ -7,7 +7,7 @@ const carModels = new Schema({
   CarYear: String,
   CarColor: String,
   CarPrice: Number,
-  CarMileage: String,
+  CarMileage: Number,
 });
 
 const carModelSchema = mongoose.model("carModelSchema", carModels);
