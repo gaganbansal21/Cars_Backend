@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
       filter.CarPrice = singleMileage;
     }
 
-    if (color.length > 1) {
+    if (color.length > 1 && color.includes('Any')) {
       if (Array.isArray(color)) {
         // Handle the case where multiple colors are selected
         filter.CarColor = { $in: color };
@@ -41,6 +41,9 @@ router.get('/', async (req, res) => {
         // Handle the case where a single color is selected
         if (color[0] !== 'Any') filter.CarColor = color;
       }
+    }
+    else{
+      if (color[0] !== 'Any') filter.CarColor = color;
     }
 
     if (mileage && mileage.length === 2) {
